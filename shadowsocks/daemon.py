@@ -55,6 +55,8 @@ def write_pid_file(pid_file, pid):
         logging.error(e)
         return -1
     # 获得当前fd的标记
+    # linux下fcntl的使用：根据文件描述词来操作文件的特性 
+    # http://www.cnblogs.com/lonelycatcher/archive/2011/12/22/2297349.html
     flags = fcntl.fcntl(fd, fcntl.F_GETFD)
     assert flags != -1
     # close on exec, not on-fork, 意为如果对描述符设置了FD_CLOEXEC，使用exec执
